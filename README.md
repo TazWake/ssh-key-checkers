@@ -188,6 +188,11 @@ Timestamp: 2024-01-15 14:30:00
 [INFO] Scan complete: 3 key(s) checked, 1 unprotected
 ```
 
+Example Local Check 
+
+<img width="701" height="371" alt="image" src="https://github.com/user-attachments/assets/9c79a35e-b247-456a-81e8-71b86ba17e24" />
+
+
 ### Remote Check Output
 ```
 🚀 SSH Key Checker - Remote Version
@@ -293,5 +298,6 @@ For issues, questions, or contributions:
 - Verify system compatibility
 
 ---
+
 
 **Note**: These scripts are designed for security auditing and should be used responsibly. Always ensure you have proper authorization before scanning systems, and respect privacy and security policies in your environment.
