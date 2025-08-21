@@ -14,18 +14,21 @@ Both scripts use the `ssh-keygen` utility to test whether SSH private keys can b
 ## Features
 
 ### Core Functionality
+
 - **Password Protection Detection**: Uses `ssh-keygen -y` to test key accessibility without passphrase
 - **Comprehensive Scanning**: Identifies all SSH private keys in specified directories
 - **User Account Discovery**: Automatically discovers user accounts and their SSH directories
 - **Detailed Reporting**: Provides clear status indicators for each key (🔒 Protected, ❌ Unprotected)
 
 ### Security Features
+
 - **Strict Error Handling**: Implements `set -euo pipefail` for robust error handling
 - **Input Validation**: Validates all user inputs and file paths
 - **Secure SSH Options**: Uses secure SSH connection parameters for remote operations
 - **Logging Capabilities**: Comprehensive logging for audit trails and compliance
 
 ### User Experience
+
 - **Color-coded Output**: Easy-to-read status indicators
 - **Command-line Options**: Flexible configuration through command-line arguments
 - **Help System**: Built-in help and version information
@@ -38,14 +41,17 @@ Both scripts use the `ssh-keygen` utility to test whether SSH private keys can b
 **Purpose**: Audits SSH private keys in a specified directory for password protection.
 
 **Usage**:
+
 ```bash
 ./localcheck.sh [directory] [options]
 ```
 
 **Arguments**:
+
 - `directory` - Directory to check for SSH keys (default: `$HOME/.ssh`)
 
 **Options**:
+
 - `-h, --help` - Show help message
 - `-l, --log FILE` - Log results to specified file
 - `-v, --verbose` - Enable verbose output
@@ -53,6 +59,7 @@ Both scripts use the `ssh-keygen` utility to test whether SSH private keys can b
 - `-V, --version` - Show version information
 
 **Examples**:
+
 ```bash
 # Check current user's .ssh directory
 ./localcheck.sh
@@ -68,6 +75,7 @@ Both scripts use the `ssh-keygen` utility to test whether SSH private keys can b
 ```
 
 **Exit Codes**:
+
 - `0` - Success, all keys are password protected
 - `1` - Error occurred
 - `2` - Unprotected keys found
@@ -78,14 +86,17 @@ Both scripts use the `ssh-keygen` utility to test whether SSH private keys can b
 **Purpose**: Remotely audits SSH keys across multiple hosts for password protection.
 
 **Usage**:
+
 ```bash
 ./remotecheck.sh [options] [hosts...]
 ```
 
 **Required Options**:
+
 - `-u, --user USER` - SSH username for remote connections
 
 **Optional Options**:
+
 - `-f, --hosts-file FILE` - File containing list of hosts (one per line)
 - `-l, --log FILE` - Log results to specified file
 - `-v, --verbose` - Enable verbose output
@@ -95,9 +106,11 @@ Both scripts use the `ssh-keygen` utility to test whether SSH private keys can b
 - `-V, --version` - Show version information
 
 **Arguments**:
+
 - `hosts` - Space-separated list of hostnames, IPs, or URIs
 
 **Examples**:
+
 ```bash
 # Audit specific hosts
 ./remotecheck.sh -u admin host1.example.com host2.example.com
@@ -113,6 +126,7 @@ Both scripts use the `ssh-keygen` utility to test whether SSH private keys can b
 ```
 
 **Hosts File Format**:
+
 ```
 # One host per line, supports hostnames, IPs, and URIs
 host1.example.com
@@ -121,6 +135,7 @@ user@host2.example.com
 ```
 
 **Exit Codes**:
+
 - `0` - Success, all keys are password protected
 - `1` - Error occurred
 - `2` - Unprotected keys found
@@ -142,11 +157,13 @@ user@host2.example.com
 ## Prerequisites
 
 ### Local System
+
 - Bash shell (version 4.0 or higher)
 - `ssh-keygen` utility
 - Read access to SSH directories
 
 ### Remote Systems
+
 - SSH access with appropriate user privileges
 - `ssh-keygen` utility on remote systems
 - User accounts with accessible home directories
@@ -154,17 +171,20 @@ user@host2.example.com
 ## Security Considerations
 
 ### Key Protection Testing
+
 The scripts use `ssh-keygen -y -f keyfile -P ""` to test password protection. This method:
 - **Does not modify keys**: Only attempts to read them
 - **Is non-intrusive**: Safe for production environments
 - **Provides reliable results**: Standard SSH tool behavior
 
 ### Access Requirements
+
 - **Local scanning**: Requires read access to SSH directories
 - **Remote scanning**: Requires SSH access with user account privileges
 - **No elevated privileges**: Scripts run with user-level permissions
 
 ### Network Security
+
 - **SSH connections**: Use secure SSH options by default
 - **Timeout protection**: Configurable connection timeouts
 - **Host validation**: Input validation for host specifications
@@ -172,6 +192,7 @@ The scripts use `ssh-keygen -y -f keyfile -P ""` to test password protection. Th
 ## Output Examples
 
 ### Local Check Output
+
 ```
 🔎 SSH Key Checker - Local Version
 ====================================================
@@ -194,6 +215,7 @@ Example Local Check
 
 
 ### Remote Check Output
+
 ```
 🚀 SSH Key Checker - Remote Version
 ====================================================
@@ -226,21 +248,25 @@ Total Unprotected Keys: 1
 ### Common Issues
 
 **Permission Denied Errors**:
+
 - Ensure read access to SSH directories
 - Check SSH key file permissions (should be 600)
 - Verify user account access on remote systems
 
 **Connection Failures**:
+
 - Verify SSH connectivity to target hosts
 - Check SSH user credentials and permissions
 - Ensure SSH service is running on target systems
 
 **No Keys Found**:
+
 - Verify SSH directories exist and contain private keys
 - Check file permissions and accessibility
 - Ensure keys are in standard SSH key formats
 
 ### Debug Mode
+
 Use verbose mode (`-v`) for detailed output:
 ```bash
 ./localcheck.sh -v
@@ -271,6 +297,7 @@ The scripts are designed for automation:
 ## Compliance and Auditing
 
 These tools support various compliance requirements:
+
 - **Security audits**: Identify unprotected SSH keys
 - **Compliance reporting**: Detailed logs for regulatory requirements
 - **Risk assessment**: Quantify exposure from unprotected keys
@@ -279,6 +306,7 @@ These tools support various compliance requirements:
 ## Contributing
 
 When contributing to these scripts:
+
 - Follow the established coding standards
 - Maintain backward compatibility
 - Add appropriate error handling
@@ -298,6 +326,5 @@ For issues, questions, or contributions:
 - Verify system compatibility
 
 ---
-
 
 **Note**: These scripts are designed for security auditing and should be used responsibly. Always ensure you have proper authorization before scanning systems, and respect privacy and security policies in your environment.
